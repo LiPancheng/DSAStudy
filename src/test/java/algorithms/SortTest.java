@@ -107,6 +107,14 @@ public class SortTest {
         }
     }
 
+    @Test
+    public void bucketSort() throws Exception {
+        int[] arr = getArray();
+        Sort sort = new Sort();
+        sort.bucketSort(arr);
+        Assert.assertArrayEquals(new int[]{0,1,3,4,5,6,8,9,10,11,12,17,20,34}, arr);
+    }
+
     private int[] getArray(){
         return new int[]{1,0,10,20,3,5,6,4,9,8,12,17,34,11};
     }
