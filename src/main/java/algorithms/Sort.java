@@ -1,12 +1,11 @@
 package algorithms;
 
 /**
- * 标准库里的Arrays.sort()：
+ * 常用排序算法的实现
  *
+ * 对于标准库里的Arrays.sort()：
  * JDK6里对原始类型用的是快速排序，对于对象类型(Object[])，JDK6则使用归并排序。
- *
  * 到了JDK7,快速排序升级为双轴快排(双基准快排)；归并排序升级为其改进版TimSort。
- *
  * 到了JDK8，对大集合增加了Arrays.parallelSort()函数，使用fork-join框架，充分利用多核，
  * 对大的集合进行切分然后再归并排序，而在小的连续片段里，依然使用TimSort与DualPivotQuickSort。
  *
