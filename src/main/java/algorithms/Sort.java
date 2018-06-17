@@ -1,5 +1,8 @@
 package algorithms;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 常用排序算法的实现
  *
@@ -306,6 +309,57 @@ public class Sort {
             int v = res[i];
             arr[count[v - min] - 1] = v;
             count[v - min]--;
+        }
+    }
+
+
+    //  ---------------------------------------- 桶排序 ------------------------------------------
+    /**
+     * 1.找出待排序的数组中最大和最小的元素；
+     * 2.设置有限数量的桶，遍历数组，将元素放入对应的桶中（对应方式可以是hash函数或其他简单映射）；
+     * 3.对每个非空的桶里面的元素进行排序（这里可使用其他排序，比如稳定的插入排序）；
+     * 4.按桶依次回填目标数组；
+     *
+     * 时间复杂度： 最优 O(n + k)， 平均 O(n + k)，最差 O(n + k)
+     * 稳定性: 稳定
+     * 分类：非比较排序
+     */
+    public void bucketSort(int[] arr){
+        //找出待排序的数组中最大和最小的元素
+        int min = arr[0], max = arr[0];
+        for (int v : arr) {
+            min = min < v ? min : v;
+            max = max > v ? max : v;
+        }
+        //桶的数量。该值也可根据实际情况选择
+        int bucketNum = max/10 - min/10 + 1;
+        List<Integer>[] buckets = new ArrayList[bucketNum];
+        for (int v : arr) {
+            int index = (v - min) / 10; //10为步长(桶的宽度/区间),由于计算桶数量时除的10。具体长度可根据情况设定
+            index = index == bucketNum ? bucketNum - 1 : index;
+            if (buckets[index] == null){
+                buckets[index] = new ArrayList<>();
+            }
+            buckets[index].add(v);
+        }
+        int i = 0;
+        for (List<Integer> bucket : buckets) {
+            if (bucket != null){
+                insertSort(bucket);
+                for (int k : bucket) {
+                    arr[i++] = k;
+                }
+            }
+        }
+    }
+    private void insertSort(List<Integer> bucket){
+        for (int i=1;i<bucket.size();i++){
+            int temp=bucket.get(i);
+            int j=i-1;
+            for (; j>=0 && bucket.get(j)>temp;j--){
+                bucket.set(j+1,bucket.get(j));
+            }
+            bucket.set(j+1,temp);
         }
     }
 }
