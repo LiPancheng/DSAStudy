@@ -1,35 +1,15 @@
 package datastructure;
 
+/**
+ * 树结点
+ * 为方便编程，没有使用getter、setter模式
+ */
 public class TreeNode {
-    int value;
-    TreeNode cleft;
-    TreeNode cRight;
+    public int value;
+    public TreeNode left;
+    public TreeNode right;
 
     public TreeNode(int value){
         this.value = value;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    public TreeNode getCleft() {
-        return cleft;
-    }
-
-    public void setCleft(TreeNode cleft) {
-        this.cleft = cleft;
-    }
-
-    public TreeNode getcRight() {
-        return cRight;
-    }
-
-    public void setcRight(TreeNode cRight) {
-        this.cRight = cRight;
     }
 }

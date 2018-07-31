@@ -13,9 +13,9 @@ public class TreeTraversal {
         if (root == null){
             return;
         }
-        System.out.print(root.getValue() + " ");
-        LDRRecur(root.getCleft());
-        LDRRecur(root.getcRight());
+        System.out.print(root.value + " ");
+        LDRRecur(root.left);
+        LDRRecur(root.right);
     }
 
     /**
@@ -25,9 +25,9 @@ public class TreeTraversal {
         if (root == null){
             return;
         }
-        LDRRecur(root.getCleft());
-        System.out.print(root.getValue() + " ");
-        LDRRecur(root.getcRight());
+        LDRRecur(root.left);
+        System.out.print(root.value + " ");
+        LDRRecur(root.right);
     }
 
     /**
@@ -37,9 +37,9 @@ public class TreeTraversal {
         if (root == null){
             return;
         }
-        LDRRecur(root.getCleft());
-        LDRRecur(root.getcRight());
-        System.out.print(root.getValue() + " ");
+        LDRRecur(root.left);
+        LDRRecur(root.right);
+        System.out.print(root.value + " ");
     }
 
 //---------------非递归方式遍历二叉树-----------------
@@ -54,12 +54,12 @@ public class TreeTraversal {
         stack.push(root);
         while (!stack.empty()){
             root = stack.pop();
-            System.out.print(root.getValue() + " ");
-            if (root.getcRight() != null){
-                stack.push(root.getcRight());
+            System.out.print(root.value + " ");
+            if (root.right != null){
+                stack.push(root.right);
             }
-            if (root.getCleft() != null){
-                stack.push(root.getCleft());
+            if (root.left != null){
+                stack.push(root.left);
             }
         }
     }
@@ -75,12 +75,12 @@ public class TreeTraversal {
         while (!stack.empty() || root != null){
             if (root == null){
                 root = stack.pop();
-                System.out.print(root.getValue() + " ");
-                root = root.getcRight();
+                System.out.print(root.value + " ");
+                root = root.right;
             }
             else {
                 stack.push(root);
-                root = root.getCleft();
+                root = root.left;
             }
         }
     }
@@ -99,15 +99,15 @@ public class TreeTraversal {
         while (!stack.empty()){
             root = stack.pop();
             printstak.push(root);
-            if (root.getcRight() != null){
-                stack.push(root.getcRight());
+            if (root.right != null){
+                stack.push(root.right);
             }
-            if (root.getCleft() != null){
-                stack.push(root.getCleft());
+            if (root.left != null){
+                stack.push(root.left);
             }
         }
         while (!printstak.empty()){
-            System.out.print(printstak.pop().getValue() + " ");
+            System.out.print(printstak.pop().value + " ");
         }
     }
     /**
@@ -127,17 +127,17 @@ public class TreeTraversal {
         TreeNode prePrint = null, cur = null;
         while (!stack.empty()){
             cur = stack.peek();
-            if ((cur.getCleft() == null && cur.getcRight() == null) ||
-                (prePrint != null && (prePrint.getCleft() == cur || prePrint.getcRight() == cur))){
-                System.out.print(cur.getValue() + " ");
+            if ((cur.left == null && cur.right == null) ||
+                (prePrint != null && (prePrint.left == cur || prePrint.right == cur))){
+                System.out.print(cur.value + " ");
                 prePrint = cur;
             }
             else {
-                if (cur.getcRight() != null){
-                    stack.push(cur.getcRight());
+                if (cur.right != null){
+                    stack.push(cur.right);
                 }
-                if (cur.getCleft() != null){
-                    stack.push(cur.getCleft());
+                if (cur.left != null){
+                    stack.push(cur.left);
                 }
             }
         }
@@ -150,25 +150,25 @@ public class TreeTraversal {
         }
         TreeNode cur = root, node = null;
         while (cur != null){
-            node = cur.getCleft();
+            node = cur.left;
             if (node != null){
                 //找到cur结点的左子树的最右结点，将其右孩子设置为cur
-                while (node.getcRight() != null && node.getcRight() != cur){
-                    node = node.getcRight();
+                while (node.right != null && node.right != cur){
+                    node = node.right;
                 }
-                if (node.getcRight() == null){ //找到了最右叶子结点
-                    node.setcRight(cur);
-                    System.out.print(cur.getValue() + " "); //此处根节点只访问一次。如果打印放到顶层while一开始，根节点会被访问两次
-                    cur = cur.getCleft(); //继续向左孩子移动，继续while以设置空指针指向
+                if (node.right == null){ //找到了最右叶子结点
+                    node.right = cur;
+                    System.out.print(cur.value + " "); //此处根节点只访问一次。如果打印放到顶层while一开始，根节点会被访问两次
+                    cur = cur.left; //继续向左孩子移动，继续while以设置空指针指向
                 }
-                else { //一定是发生node.getcRight() != null && node.getcRight() == cur才会到这
-                    node.setcRight(null); //将树还原
-                    cur = cur.getcRight();
+                else { //一定是发生node.right != null && node.right == cur才会到这
+                    node.right = null; //将树还原
+                    cur = cur.right;
                 }
             }
             else {
-                System.out.print(cur.getValue() + " ");
-                cur = cur.getcRight();
+                System.out.print(cur.value + " ");
+                cur = cur.right;
             }
         }
     }
@@ -179,25 +179,25 @@ public class TreeTraversal {
         }
         TreeNode cur = root, node = null;
         while (cur != null){
-            node = cur.getCleft();
+            node = cur.left;
             if (node != null){
                 //找到cur结点的左子树的最右结点，将其右孩子设置为cur
-                while (node.getcRight() != null && node.getcRight() != cur){
-                    node = node.getcRight();
+                while (node.right != null && node.right != cur){
+                    node = node.right;
                 }
-                if (node.getcRight() == null){ //找到了最右叶子结点
-                    node.setcRight(cur);
-                    cur = cur.getCleft(); //继续向左孩子移动，继续while以设置空指针指向
+                if (node.right == null){ //找到了最右叶子结点
+                    node.right = cur;
+                    cur = cur.left; //继续向左孩子移动，继续while以设置空指针指向
                 }
-                else { //一定是发生node.getcRight() != null && node.getcRight() == cur才会到这
-                    System.out.print(cur.getValue() + " ");
-                    node.setcRight(null); //将树还原
-                    cur = cur.getcRight();
+                else { //一定是发生node.right != null && node.right == cur才会到这
+                    System.out.print(cur.value + " ");
+                    node.right = null; //将树还原
+                    cur = cur.right;
                 }
             }
             else {
-                System.out.print(cur.getValue() + " ");
-                cur = cur.getcRight();
+                System.out.print(cur.value + " ");
+                cur = cur.right;
             }
         }
     }
@@ -208,28 +208,28 @@ public class TreeTraversal {
         }
         TreeNode cur = root, node = null;
         while (cur != null){
-            node = cur.getCleft();
+            node = cur.left;
             if (node != null){
                 //找到cur结点的左子树的最右结点，将其右孩子设置为cur
-                while (node.getcRight() != null && node.getcRight() != cur){
-                    node = node.getcRight();
+                while (node.right != null && node.right != cur){
+                    node = node.right;
                 }
-                if (node.getcRight() == null){ //找到了最右叶子结点
-                    node.setcRight(cur);
-                    cur = cur.getCleft(); //继续向左孩子移动，继续while以设置空指针指向
+                if (node.right == null){ //找到了最右叶子结点
+                    node.right = cur;
+                    cur = cur.left; //继续向左孩子移动，继续while以设置空指针指向
                 }
-                else { //一定是发生node.getcRight() != null && node.getcRight() == cur才会到这
-                    node.setcRight(null); //将树还原
-                    printEdge(cur.getCleft());
-                    cur = cur.getcRight();
+                else { //一定是发生node.right != null && node.right == cur才会到这
+                    node.right = null; //将树还原
+                    printEdge(cur.left);
+                    cur = cur.right;
                 }
             }
             else {
-                cur = cur.getcRight();
+                cur = cur.right;
             }
         }
         //由于后序遍历会先打印整个树的右子树最右结点再打印整个树的根。但右子树最右结点并没有指向root，因为都是用的左子树的最右结点
-        //所以打印了整个树的右子树最右结点后，cur = cur.getcRight()就为null，会退出循环，可此时整个树的右边界还未打印
+        //所以打印了整个树的右子树最右结点后，cur = cur.cRight就为null，会退出循环，可此时整个树的右边界还未打印
         printEdge(root);
     }
 
@@ -237,8 +237,8 @@ public class TreeTraversal {
         TreeNode tail = reverseEdge(from);
         TreeNode tmp = tail;
         while (tmp != null){
-            System.out.print(tmp.getValue() + " ");
-            tmp = tmp.getcRight();
+            System.out.print(tmp.value + " ");
+            tmp = tmp.right;
         }
         reverseEdge(tail);
     }
@@ -246,8 +246,8 @@ public class TreeTraversal {
     private TreeNode reverseEdge(TreeNode from){
         TreeNode pre = null, next = null;
         while (from != null){
-            next = from.getcRight();
-            from.setcRight(pre);
+            next = from.right;
+            from.right = pre;
             pre = from;
             from = next;
         }

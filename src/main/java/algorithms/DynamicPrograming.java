@@ -19,14 +19,6 @@ package algorithms;
  */
 public class DynamicPrograming {
 
-    public static void main(String[] args) {
-        DynamicPrograming dp = new DynamicPrograming();
-        long s = System.currentTimeMillis();
-        int res = dp.miningSubProgress(100, 5);
-        System.out.println(res);
-        System.out.println(System.currentTimeMillis() - s);
-    }
-
     /**
         7
         3   8
@@ -93,5 +85,40 @@ public class DynamicPrograming {
                     y > 0 ? y : miningSubProgress(p, n-1));
             return record[p][n];
         }
+    }
+
+    /**
+     * 给定一个矩阵m，从左上角开始每次只能往右或往下走，最后到达右下角的位置
+     * 路径上所有数字累加起来就是路径和。求最小路径和
+     * 题目及解答见书的第4章 递归和动态规划 问题2
+     */
+    public static int minPathSum(int[][] m){
+        int row = m.length;
+        int column = m[0].length;
+        for (int i = row - 2; i > -1; i--) {
+            m[i][column - 1] += m[i + 1][column - 1];
+        }
+        for (int i = column - 2; i > -1; i--) {
+            m[row - 1][i] += m[row - 1][i + 1];
+        }
+        for (int i = row - 2; i > -1; i--) {
+            for (int j = column - 2; j > -1 ; j--) {
+                m[i][j] += Math.min(m[i+1][j], m[i][j+1]);
+            }
+        }
+        return m[0][0];
+    }
+
+
+
+
+
+    public static void main(String[] args) {
+        // int[][] m = generateRandomMatrix(3, 4);
+        int[][] m = { { 1, 3, 5, 9 }, { 8, 1, 3, 4 }, { 5, 0, 6, 1 },
+                { 8, 8, 4, 0 } };
+        //printMatrix(m);
+        System.out.println(minPathSum(m));
+
     }
 }
