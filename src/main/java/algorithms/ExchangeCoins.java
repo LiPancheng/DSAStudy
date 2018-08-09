@@ -1,9 +1,5 @@
 package algorithms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-
 public class ExchangeCoins {
     /**
      * 给定数组，其中的值都为正数且不重复，每个代表可用零钱的面值。每种面值的货币可以使用任意张
