@@ -27,6 +27,7 @@ public class Sort {
      *3.递归地把两边的子数列排序。
      *
      * 时间复杂度：最优 O(nlogn)，平均 O(nlogn)，最差 O(n2)即每次基准取到最大或最小
+     * 空间复杂度：最优 O(logn)
      * 稳定性：不稳定
      * 分类：比较排序
      */
@@ -59,6 +60,7 @@ public class Sort {
      * 归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法的一个非常典型的应用。
      *
      * 时间复杂度： 最优 O(nlogn)，平均 O(nlogn)，最差 O(nlogn)
+     * 空间复杂度：最优 O(n)
      * 稳定性: 稳定
      * 分类：比较排序
      */
@@ -122,8 +124,17 @@ public class Sort {
             swap(arr, 0, i);
             //重建（调整）堆
             adjustHeap(arr, i/2 -1, i-1);
+            for (int v:arr               ) {
+                System.out.println(v);
+            }
+            break;
         }
 
+    }
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{9,8,5,7,6,3,4};
+        new Sort().heapSort(arr);
     }
 
     private void adjustHeap(int[] arr, int current, int end){
