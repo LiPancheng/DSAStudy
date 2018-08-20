@@ -1,7 +1,5 @@
 package newIdea;
 
-import java.util.LinkedHashMap;
-
 /**
  * 给定一个整型数组 arr 和一个大于 1 的正整数的 k .其中只有一个数出现 1 次，其余数出现 k 次，找到这个出现 1 次的数
  */

@@ -59,7 +59,6 @@ public class MaxBinarySearchTree {
         TreeNode bst = new MaxBinarySearchTree().biggestSubBST(head);
         System.out.println(bst.value);
 
-
     }
 
 

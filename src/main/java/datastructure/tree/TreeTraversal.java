@@ -2,6 +2,8 @@ package datastructure.tree;
 
 import datastructure.TreeNode;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
 
 public class TreeTraversal {
@@ -45,6 +47,7 @@ public class TreeTraversal {
 //---------------非递归方式遍历二叉树-----------------
     /**
      * 先序遍历，非递归方式
+     * 相当于图的深度优先遍历（DFS）
      */
     public void DLRUnRecur(TreeNode root){
         if (root == null){
@@ -142,6 +145,26 @@ public class TreeTraversal {
             }
         }
     }
+
+    /**
+     * 树的层次遍历
+     * 相当于图的广度优先遍历
+     */
+    public void BFS(TreeNode root){
+        if (root == null)
+            return;
+        ArrayDeque<TreeNode> queue = new ArrayDeque<>();
+        queue.offerLast(root);
+        while (queue.peekFirst() != null){
+            TreeNode node = queue.pollFirst();
+            System.out.println(node.value);
+            if (node.left != null)
+                queue.offerLast(node.left);
+            if (node.right != null)
+                queue.offerLast(node.right);
+        }
+    }
+
 
     //---------------非递归方式遍历二叉树之 Morris算法   时间复杂度为O(N) 空间复杂度为O(1)-----------------
     public void morrisDLR(TreeNode root){
