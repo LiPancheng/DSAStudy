@@ -9,16 +9,16 @@ public class SimpleListExe {
      */
     public void printCommPart1(ListNode head1, ListNode head2){
         while (head1 != null && head2 != null){
-            if (head1.getValue() < head2.getValue()){
-                head1 = head1.next();
+            if (head1.value  < head2.value ){
+                head1 = head1.next;
             }
-            else if (head1.getValue() > head2.getValue()){
-                head2 = head2.next();
+            else if (head1.value  > head2.value ){
+                head2 = head2.next;
             }
             else {
-                System.out.print(head1.getValue()+ " ");
-                head1 = head1.next();
-                head2 = head2.next();
+                System.out.print(head1.value + " ");
+                head1 = head1.next;
+                head2 = head2.next;
             }
         }
     }
@@ -44,15 +44,15 @@ public class SimpleListExe {
         }
         int dist = Math.abs(len1 - len2);
         while (dist-- > 0){
-            longList = longList.next();
+            longList = longList.next;
         }
         while (shortList != null){
             if (longList == shortList){
-                System.out.println(shortList.getValue()+ " ");
+                System.out.println(shortList.value + " ");
             }
             else {
-                longList = longList.next();
-                shortList = shortList.next();
+                longList = longList.next;
+                shortList = shortList.next;
             }
         }
     }
@@ -66,18 +66,18 @@ public class SimpleListExe {
         ListNode p = head;
         while (p != null){
             len++;
-            p = p.next();
+            p = p.next;
         }
         int dif = len - k;
         p = head;
         if (dif == 0){
-            head = head.next();
+            head = head.next;
         }
         else if (dif > 0){
             while (--dif > 0){
-                p = p.next();
+                p = p.next;
             }
-            p.setNext(p.next().next());
+            p.next = p.next.next;
             head = p;
         }
 
@@ -99,8 +99,8 @@ public class SimpleListExe {
     public ListNode reverse(ListNode head){
         ListNode next = null, pre = null;
         while (head != null){
-            next = head.next();
-            head.setNext(pre);
+            next = head.next;
+            head.next = pre;
             pre = head;
             head = next;
         }
@@ -116,9 +116,9 @@ public class SimpleListExe {
     public BiLNode reverse(BiLNode head){
         BiLNode next, pre = null;
         while (head != null){
-            next = head.next();
-            head.setNext(pre);
-            head.setPre(next);
+            next = head.next;
+            head.next = pre;
+            head.pre = next;
             pre = head;
             head = next;
         }
@@ -130,7 +130,7 @@ public class SimpleListExe {
         int len = 0;
         while (head != null){
             len++;
-            head = head.next();
+            head = head.next;
         }
         return len;
     }

@@ -16,25 +16,25 @@ public class JosephProblem {
      * 在第二个while处，由于是环形链表，所以其时间复杂度为O（N * m）
      */
     public ListNode josephProcess(ListNode head, int m){
-        if (head == null || head == head.next() || m < 1){
+        if (head == null || head == head.next || m < 1){
             return head;
         }
         //需要pre来进行删除节点的重链接
         ListNode pre = head;
         //先找到头节点的pre，以防m=1时一来就删除头节点
-        while (pre.next() != head){
-            pre = pre.next();
+        while (pre.next != head){
+            pre = pre.next;
         }
         int count = 0;
         while (head != pre){
             if (++count == m){
-                pre.setNext(head.next());
+                pre.next = head.next;
                 count = 0;
             }
             else {
-                pre = pre.next();
+                pre = pre.next;
             }
-            head = head.next();
+            head = head.next;
         }
         return head;
     }
@@ -62,18 +62,18 @@ public class JosephProblem {
      当i!=1时，  f(m,k,i)= (f(m-1, k, i-1) + k) % m
      */
     public ListNode josephProcessAdvance(ListNode head, int m){
-        if (head == null || head == head.next() || m < 1){
+        if (head == null || head == head.next || m < 1){
             return head;
         }
         int size = 1;
-        ListNode cur = head.next();
+        ListNode cur = head.next;
         while (cur != head){
             size++;
-            cur = cur.next();
+            cur = cur.next;
         }
         int lastAlive = getKthOutNum(size, m, size);
         while (lastAlive-- > 0){
-            head = head.next();
+            head = head.next;
         }
         return head;
     }

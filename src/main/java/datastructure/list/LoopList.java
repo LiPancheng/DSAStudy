@@ -6,13 +6,13 @@ public class LoopList {
 
     /**
      * 一、判断一个单链表是否有环
-     * 设置一个快指针fast和慢指针slow，初始都指向
+     * 设置一个快指针fast和慢指针slow，初始都指向头结点。如果有环，必相遇
      */
     public boolean hasLoop(ListNode head){
         ListNode slow = head, fast = head;
-        while (fast != null && fast.next() != null){ //fast肯定在slow前面，因此只需判断fast
-            slow = slow.next();
-            fast = fast.next().next();
+        while (fast != null && fast.next != null){ //fast肯定在slow前面，因此只需判断fast
+            slow = slow.next;
+            fast = fast.next.next;
             if (slow == fast){
                 return true;
             }
@@ -45,23 +45,23 @@ public class LoopList {
      * 那么它们就一定是在环入口结点遇见的
      */
     public ListNode getLoopEntry(ListNode head){
-        if (head == null || head.next() == null || head.next().next() == null){
+        if (head == null || head.next == null || head.next.next == null){
             return null;
         }
         //判断单链表是否有环。与上面函数思想一致，实现略有不同而已
-        ListNode slow = head.next(), fast = head.next().next();
+        ListNode slow = head.next, fast = head.next.next;
         while (slow != fast){
-            if (slow.next() == null || fast.next().next() == null){
+            if (slow.next == null || fast.next.next == null){
                 return null;
             }
-            slow = slow.next();
-            fast = fast.next().next();
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
         fast = head;
         while (slow != fast){
-            slow = slow.next();
-            fast = fast.next();
+            slow = slow.next;
+            fast = fast.next;
         }
         return slow;
     }
